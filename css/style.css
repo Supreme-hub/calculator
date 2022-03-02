@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.digit , .op, #back{
+    width: 20%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+}
+
+#digits {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#cont {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#sum , #altSum{
+    font-size: 30px;
+}
+
+.op {
+    background: rgb(26, 149, 187);
+}
+
+#clear {
+    background: darkgray;
+}
+
+#sum-cont {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 50px;
+}
