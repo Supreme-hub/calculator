@@ -44,3 +44,12 @@ body {
     width: 90%;
     height: 50px;
 }
+
+#buttonsCL {
+    display: flex;
+    width: 300px;
+}
+
+#clear {
+    width: 100px;
+}

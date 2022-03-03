@@ -18,9 +18,10 @@ const a = digits.querySelector('#add');
 const clear = document.querySelector('#clear');
 const back = document.querySelector('#back');
 const altSum = document.querySelector('#altSum');
+const flt = document.querySelector('#float');
 let CTOP = '';
-let CT1 = 0;
-let CT2 = 0;
+let CT1 = 0.0;
+let CT2 = 0.0;
 let total = "0";
 sum.textContent = '';
 
@@ -28,13 +29,13 @@ function add (a, b) {
     return a +b;
 }
 function multiply (a, b) {
-    return a *b;
+    return a * b;
 }
 function subtract (a, b) {
-    return a -b;
+    return a -b
 }
 function divide (a, b) {
-    return a /b;
+    return a/b;
 }
 
 function operate (op, a, b) {
@@ -51,11 +52,14 @@ function operate (op, a, b) {
     if (op === '/') {
         set = divide(a ,b);
     }
+    if (parseInt(set) != parseFloat(set)) {
+        set = (Math.round(set * 100))/100
+    }
     return set;
 }
 
 function setup(a) {
-    altSum.textContent =' ' + a + ' ' + CT1;
+    altSum.textContent =' ' + CT1 + ' ' + a;
 }
 
 one.addEventListener('click', () => {
@@ -90,10 +94,11 @@ zero.addEventListener('click', () => {
 })
 clear.addEventListener('click', () => {
     sum.textContent = '';
+    altSum.textContent = '';
 })
 
 e.addEventListener('click', () => {
-    CT2 = parseInt(sum.textContent);
+    CT2 = parseFloat(sum.textContent);
     sum.textContent = operate(CTOP, CT1, CT2);
     console.log(operate(CTOP, CT1, CT2));
     CT1 = 0;
@@ -102,40 +107,40 @@ e.addEventListener('click', () => {
 
 s.addEventListener('click', () => {
     if (CT1 != 0) {
-        CT2 = parseInt(sum.textContent);
+        CT2 = parseFloat(sum.textContent);
         sum.textContent = operate(CTOP, CT1, CT2);
     }
-    CT1 = parseInt(sum.textContent);
+    CT1 = parseFloat(sum.textContent);
     setup('-');
     sum.textContent = '';
     CTOP = '-'
 })
 a.addEventListener('click', () => {
     if (CT1 != 0) {
-        CT2 = parseInt(sum.textContent);
+        CT2 = parseFloat(sum.textContent);
         sum.textContent = operate(CTOP, CT1, CT2);
     }
-    CT1 = parseInt(sum.textContent);
+    CT1 = parseFloat(sum.textContent);
     setup('+');
     sum.textContent = '';
     CTOP = '+'
 })
 m.addEventListener('click', () => {
     if (CT1 != 0) {
-        CT2 = parseInt(sum.textContent);
+        CT2 = parseFloat(sum.textContent);
         sum.textContent = operate(CTOP, CT1, CT2);
     }
-    CT1 = parseInt(sum.textContent);
+    CT1 = parseFloat(sum.textContent);
     setup('*');
     sum.textContent = '';
     CTOP = '*'
 })
 d.addEventListener('click', () => {
     if (CT1 != 0) {
-        CT2 = parseInt(sum.textContent);
+        CT2 = parseFloat(sum.textContent);
         sum.textContent = operate(CTOP, CT1, CT2);
     }
-    CT1 = parseInt(sum.textContent);
+    CT1 = parseFloat(sum.textContent);
     setup('/');
     sum.textContent = '';
     CTOP = '/'
@@ -143,4 +148,10 @@ d.addEventListener('click', () => {
 
 back.addEventListener('click', () => {
     sum.textContent = sum.textContent.slice(0, -1);
+})
+
+flt.addEventListener('click', () => {
+    if (sum.textContent.includes('.') === false) {
+        sum.textContent += '.';
+    }
 })
