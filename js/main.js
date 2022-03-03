@@ -25,6 +25,17 @@ let CT2 = 0.0;
 let total = "0";
 sum.textContent = '';
 
+function set(a) {
+    if (CT1 != 0) {
+        CT2 = parseFloat(sum.textContent);
+        sum.textContent = operate(CTOP, CT1, CT2);
+    }
+    CT1 = parseFloat(sum.textContent);
+    setup(a);
+    sum.textContent = '';
+    CTOP = a;
+}
+
 function add (a, b) {
     return a +b;
 }
@@ -62,35 +73,39 @@ function setup(a) {
     altSum.textContent =' ' + CT1 + ' ' + a;
 }
 
+function summer (a) {
+    sum.textContent += a;
+}
+
 one.addEventListener('click', () => {
-    sum.textContent += '1';
+    summer('1');
 })
 two.addEventListener('click', () => {
-    sum.textContent += '2';
+    summer('2');
 })
 three.addEventListener('click', () => {
-    sum.textContent += '3';
+    summer('3');
 })
 four.addEventListener('click', () => {
-    sum.textContent += '4';
+    summer('4');
 })
 five.addEventListener('click', () => {
-    sum.textContent += '5';
+    summer('5');
 })
 six.addEventListener('click', () => {
-    sum.textContent += '6';
+    summer('6');
 })
 seven.addEventListener('click', () => {
-    sum.textContent += '7';
+    summer('7');
 })
 eight.addEventListener('click', () => {
-    sum.textContent += '8';
+    summer('8');
 })
 nine.addEventListener('click', () => {
-    sum.textContent += '9';
+    summer('9');
 })
 zero.addEventListener('click', () => {
-    sum.textContent += '0';
+    summer('0');
 })
 clear.addEventListener('click', () => {
     sum.textContent = '';
@@ -106,44 +121,16 @@ e.addEventListener('click', () => {
 })
 
 s.addEventListener('click', () => {
-    if (CT1 != 0) {
-        CT2 = parseFloat(sum.textContent);
-        sum.textContent = operate(CTOP, CT1, CT2);
-    }
-    CT1 = parseFloat(sum.textContent);
-    setup('-');
-    sum.textContent = '';
-    CTOP = '-'
+    set('-')
 })
 a.addEventListener('click', () => {
-    if (CT1 != 0) {
-        CT2 = parseFloat(sum.textContent);
-        sum.textContent = operate(CTOP, CT1, CT2);
-    }
-    CT1 = parseFloat(sum.textContent);
-    setup('+');
-    sum.textContent = '';
-    CTOP = '+'
+    set('+')
 })
 m.addEventListener('click', () => {
-    if (CT1 != 0) {
-        CT2 = parseFloat(sum.textContent);
-        sum.textContent = operate(CTOP, CT1, CT2);
-    }
-    CT1 = parseFloat(sum.textContent);
-    setup('*');
-    sum.textContent = '';
-    CTOP = '*'
+    set('*')
 })
 d.addEventListener('click', () => {
-    if (CT1 != 0) {
-        CT2 = parseFloat(sum.textContent);
-        sum.textContent = operate(CTOP, CT1, CT2);
-    }
-    CT1 = parseFloat(sum.textContent);
-    setup('/');
-    sum.textContent = '';
-    CTOP = '/'
+    set('/')
 })
 
 back.addEventListener('click', () => {
@@ -152,6 +139,66 @@ back.addEventListener('click', () => {
 
 flt.addEventListener('click', () => {
     if (sum.textContent.includes('.') === false) {
-        sum.textContent += '.';
+        summer('.');
+    }
+})
+
+document.addEventListener('keydown', (e) => {
+    if (e.key == '1') {
+        summer('1');
+    }
+    if (e.key == '2') {
+        summer('2');
+    }
+    if (e.key == '3') {
+        summer('3');
+    }
+    if (e.key == '4') {
+        summer('4');
+    }
+    if (e.key == '5') {
+        summer('5');
+    }
+    if (e.key == '6') {
+        summer('6');
+    }
+    if (e.key == '7') {
+        summer('7');
+    }
+    if (e.key == '8') {
+        summer('8');
+    }
+    if (e.key == '9') {
+        summer('9');
+    }
+    if (e.key == '0') {
+        summer('0');
+    }
+    if (e.key == '/') {
+        set('/')
+    }
+    if (e.key == '-') {
+        set('-')
+    }
+    if (e.key == '+') {
+        set('+')
+    }
+    if (e.key == '*') {
+        set('*')
+    }
+    if (e.key == 'Enter') {
+        CT2 = parseFloat(sum.textContent);
+        sum.textContent = operate(CTOP, CT1, CT2);
+        console.log(operate(CTOP, CT1, CT2));
+        CT1 = 0;
+        altSum.textContent = '';
+    }
+    if (e.key == 'Backspace') {
+        sum.textContent = sum.textContent.slice(0, -1);
+    }
+    if (e.key == '.') {
+        if (sum.textContent.includes('.') === false) {
+            summer('.');
+        }
     }
 })
