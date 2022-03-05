@@ -110,6 +110,7 @@ zero.addEventListener('click', () => {
 clear.addEventListener('click', () => {
     sum.textContent = '';
     altSum.textContent = '';
+    CT1 = 0;
 })
 
 e.addEventListener('click', () => {
